@@ -1,0 +1,132 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeAchievement}[1]{\item\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeAchievementItem}[1]{\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+%-----HEADING-----
+\begin{center}
+    {\Huge \scshape {{NAME}}} \\ \vspace{5pt}
+    \small \raisebox{-0.1\height}\faPhone\ {{PHONE}} ~
+    \small \raisebox{-0.1\height}\faEnvelope\ {{EMAIL}} ~
+    \href{https://{{LINKEDIN}}}{\raisebox{-0.2\height}\faLinkedin\ \underline{{{LINKEDIN}}}} ~
+    \href{https://{{GITHUB}}}{\raisebox{-0.2\height}\faGithub\ \underline{{{GITHUB}}}} ~
+    \href{https://{{WEBSITE}}}{\raisebox{-0.2\height}\faGlobe\ \underline{{{WEBSITE}}}}
+    \vspace{-6pt}
+\end{center}
+
+%-----PROFILE-------
+\section{Profile}
+\small{{{SUMMARY}}}
+\vspace{-6pt}
+
+%------EDUCATION------
+\section{Education}
+  \resumeSubHeadingListStart
+{{EDUCATION}}
+  \resumeSubHeadingListEnd
+\vspace{-6pt}
+
+%------EXPERIENCE------
+\section{Experience}
+  \vspace{-4pt}
+    \resumeSubHeadingListStart
+{{EXPERIENCE}}
+    \resumeSubHeadingListEnd
+\vspace{-8pt}
+
+%------PROJECTS------
+\section{Projects}
+    \vspace{-4pt}
+    \resumeSubHeadingListStart
+{{PROJECTS}}
+    \resumeSubHeadingListEnd
+\vspace{-8pt}
+
+%------SKILLS------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: {{LANGUAGES}}} \\
+     \textbf{Technologies \& Tools}{: {{TECHNOLOGIES}}} \\
+     \textbf{Professional Skills}{: {{PROFESSIONAL}}} \\
+    }}
+ \end{itemize}
+ \vspace{-12pt}
+
+%------LEADERSHIP & ACTIVITIES------
+\section{Leadership \& Activities}
+  \vspace{-4pt}
+    \resumeSubHeadingListStart
+{{LEADERSHIP}}
+    \resumeSubHeadingListEnd
+    \vspace{-8pt}
+
+%------ACHIEVEMENTS & CERTIFICATIONS------
+\section{Achievements \& Certifications}
+    \resumeItemListStart
+{{ACHIEVEMENTS}}
+    \resumeItemListEnd
+
+\end{document}

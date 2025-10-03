@@ -1,0 +1,104 @@
+# ===========================================
+# PYTHON BACKEND - VIRTUAL ENVIRONMENT
+# ===========================================
+# Virtual environments (CRITICAL - never commit these)
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ===========================================
+# PYTHON BACKEND - CACHE & BUILD
+# ===========================================
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ===========================================
+# PYTHON BACKEND - FLASK SPECIFIC
+# ===========================================
+# Flask instance folder
+instance/
+.webassets-cache
+
+# ===========================================
+# ENVIRONMENT VARIABLES & SECRETS
+# ===========================================
+# Environment files
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# Secret files
+secrets.json
+private_keys.json
+service_account.json
+
+# ===========================================
+# DEVELOPMENT TOOLS
+# ===========================================
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# LOGS & TEMPORARY FILES
+# ===========================================
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# ===========================================
+# LATEX COMPILATION ARTIFACTS
+# ===========================================
+# LaTeX temporary files
+*.aux
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+
+# ===========================================
+# TEST OUTPUTS
+# ===========================================
+test_output/
+test_results/
+coverage/
+
+# ===========================================
+# NOTE: Frontend .gitignore handles Flutter-specific files
+# ===========================================

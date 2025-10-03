@@ -1,0 +1,118 @@
+{
+  "profile": {
+    "name": "John Doe",
+    "phone": "+1 (123) 456-7890",
+    "email": "john.doe@email.com",
+    "linkedin": "linkedin.com/in/johndoe",
+    "github": "github.com/johndoe",
+    "website": "johndoe.dev",
+    "summary": "Building Flutter apps that work - disciplined Flutter developer with expertise in Firebase (Auth, Cloud Firestore, RealtimeDatabase, Cloud Functions), RESTful APIs, and Riverpod. Designing intuitive, responsive UI/UX, delivering robust backend logic and architecting clean, scalable, cross-platform solutions."
+  },
+  "education": [
+    {
+      "university": "Guru Gobind Singh Indraprastha University",
+      "degree": "Bachelor of Technology in Industrial Internet of Things",
+      "date": "2021 - 2025",
+      "cgpa": "CGPA: 7.76/10"
+    }
+  ],
+  "experience": [
+    {
+      "company": "The Tie Media",
+      "role": "Software Engineer Intern",
+      "location": "San Francisco, CA",
+      "date": "May 2024 - Aug 2024",
+      "points": [
+        "Developed 8+ high-performance Flutter screens to improve user onboarding and boost engagement metrics.",
+        "Integrated Firebase Authentication with role-based access (admin & user), enhancing security and reducing login errors.",
+        "Refactored modular Flutter widgets in collaboration with designers using Figma, reducing load time by 50%.",
+        "Built reusable components for the codebase to support a clean, scalable front-end architecture."
+      ]
+    },
+    {
+      "company": "Gyanvapi Tech Solutions",
+      "role": "Software Engineer Intern",
+      "location": "San Francisco, CA",
+      "date": "May 2024 - Aug 2024",
+      "points": [
+        "Developed 8+ high-performance Flutter screens to improve user onboarding and boost engagement metrics.",
+        "Integrated Firebase Authentication with role-based access (admin & user), enhancing security and reducing login errors.",
+        "Refactored modular Flutter widgets in collaboration with designers using Figma, reducing load time by 50%.",
+        "Built reusable components for the codebase to support a clean, scalable front-end architecture."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "DeciMate - Decision Making App",
+      "link": "https://github.com/johndoe/project-alpha",
+      "points": [
+        "Developed a real-time collaborative polling platform in Flutter, enabling multiple users to vote simultaneously.",
+        "Executed multi-user authentication using Firebase Auth and Firestore-based vote and session management.",
+        "Applied Provider for state management to ensure responsive UI updates during live polls.",
+        "Facilitated instant, synchronized group decision-making through a clean interface and reliable session continuity."
+      ]
+    },
+    {
+      "name": "E-Truck - Freight Management App",
+      "link": "https://github.com/johndoe/project-alpha",
+      "points": [
+        "Developed a comprehensive truck management system in Flutter, streamlining vehicle tracking and maintenance.",
+        "Integrated Firebase Auth for secure user authentication and Firestore for efficient data storage.",
+        "Implemented a state management solution using Provider to ensure smooth UI updates and real-time data handling.",
+        "Enhanced user experience through a clean, intuitive interface and reliable session continuity."
+      ]
+    },
+    {
+      "name": "SmartCart - Smart Shopping Cart",
+      "link": "https://github.com/johndoe/e-truck",
+      "points": [
+        "Developed a smart shopping cart system in Flutter, streamlining product tracking and inventory management.",
+        "Integrated Firebase Auth for secure user authentication and Firestore for efficient data storage.",
+        "Implemented a state management solution using Provider to ensure smooth UI updates and real-time data handling.",
+        "Enhanced user experience through a clean, intuitive interface and reliable session continuity."
+      ]
+    }
+  ],
+  "skills": {
+    "languages": "Dart, Python, Java, JavaScript, SQL", 
+    "technologies": "Flutter, Firebase, Provider, Riverpod, MySQL, PostgreSQL, MongoDB, SQLite, Flask, FastAPI, Node.js, REST APIs, TensorFlow Lite, AWS, GCP, Data Structures and Algorithms, VS Code, Git, GitHub, Android Studio, Figma, Adobe Illustrator, Adobe Photoshop",
+    "professional": "Leadership, Management, Communication, Teamwork & Collaboration"
+  },
+  "leadership": [
+    {
+      "organization": "AWS Cloud Club, GGSIPU",
+      "role": "Vice President",
+      "date": "Sep 2024 - May 2025",
+      "points": [
+        "Managed a team of 10+ members to organize and execute AWS Cloud events.",
+        "Conducted workshops on AWS services and technologies to enhance member skills."
+      ]
+    },
+    {
+      "organization": "AWS Cloud Club, GGSIPU",
+      "role": "President",
+      "date": "Sep 2024 - May 2025",
+      "points": [
+        "Managed a team of 10+ members to organize and execute AWS Cloud events.",
+        "Conducted workshops on AWS services and technologies to enhance member skills."
+      ]
+    },
+    {
+      "organization": "AWS Cloud Club, GGSIPU",
+      "role": "President",
+      "date": "Sep 2024 - May 2025",
+      "points": [
+        "Managed a team of 10+ members to organize and execute AWS Cloud events.",
+        "Conducted workshops on AWS services and technologies to enhance member skills."
+      ]
+    }
+  ],
+  "achievements": [
+    "Qualified University Level Round of Smart India Hackathon (SIH)",
+    "Postman API Fundamentals Student Expert - Postman",
+    "Certified Cloud Practitioner - AWS",
+    "Certified AWS Cloud Practitioner - AWS",
+    "Certified AWS Cloud Practitioner - AWS"
+  ]
+}
