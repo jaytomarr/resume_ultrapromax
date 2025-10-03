@@ -11,7 +11,7 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-\usepackage{fontawesome}
+% Removed fontawesome - using emoji symbols instead
 \usepackage{multicol}
 \setlength{\multicolsep}{-3.0pt}
 \setlength{\columnsep}{-1pt}
@@ -68,11 +68,11 @@
 %-----HEADING-----
 \begin{center}
     {\Huge \scshape {{NAME}}} \\ \vspace{5pt}
-    \small \raisebox{-0.1\height}\faPhone\ {{PHONE}} ~
-    \small \raisebox{-0.1\height}\faEnvelope\ {{EMAIL}} ~
-    \href{https://{{LINKEDIN}}}{\raisebox{-0.2\height}\faLinkedin\ \underline{{{LINKEDIN}}}} ~
-    \href{https://{{GITHUB}}}{\raisebox{-0.2\height}\faGithub\ \underline{{{GITHUB}}}} ~
-    \href{https://{{WEBSITE}}}{\raisebox{-0.2\height}\faGlobe\ \underline{{{WEBSITE}}}}
+    \small $\bullet$ {{PHONE}} ~
+    \small $\bullet$ {{EMAIL}} ~
+    \href{https://{{LINKEDIN}}}{\small $|$ \underline{{{LINKEDIN}}}} ~
+    \href{https://{{GITHUB}}}{\small $|$ \underline{{{GITHUB}}}} ~
+    \href{https://{{WEBSITE}}}{\small $|$ \underline{{{WEBSITE}}}}
     \vspace{-6pt}
 \end{center}
 

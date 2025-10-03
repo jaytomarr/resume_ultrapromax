@@ -4,11 +4,13 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies for LaTeX
+# Install minimal LaTeX packages for free tier limits
 RUN apt-get update && apt-get install -y \
     texlive-latex-base \
-    texlive-latex-extra \
+    texlive-latex-recommended \
     texlive-fonts-recommended \
+    texlive-lang-english \
+    texlive-generic-extra \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
