@@ -140,11 +140,24 @@ Before deploying, ensure you have:
    ```
 
 4. **Build Settings** (VERY IMPORTANT)
+   Configure these settings directly in the Vercel dashboard:
+   
+   **Build Command:**
    ```
-   Build Command: flutter build web --release
-   Output Directory: build/web
-   Install Command: flutter pub get
+   flutter/bin/flutter build web --release
    ```
+   
+   **Output Directory:**
+   ```
+   build/web
+   ```
+   
+   **Install Command:**
+   ```
+   if cd flutter; then git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi && ls && flutter/bin/flutter doctor && flutter/bin/flutter clean && flutter/bin/flutter config --enable-web
+   ```
+   
+   ✅ **No `vercel.json` file needed** when configuring directly on Vercel website!
 
 5. **Environment Variables** (if needed)
    - Most Firebase config is in your code, but if you have any secrets:
