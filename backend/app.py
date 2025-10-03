@@ -6,10 +6,8 @@ import os
 import shutil
 import logging
 
-# Add MiKTeX to PATH if not already there
-MIKTEX_PATH = r"C:\Users\iamja\AppData\Local\Programs\MiKTeX\miktex\bin\x64"
-if MIKTEX_PATH not in os.environ.get('PATH', ''):
-    os.environ['PATH'] = MIKTEX_PATH + os.pathsep + os.environ.get('PATH', '')
+# LaTeX will be available via system PATH on Render (Linux)
+# No need to add Windows-specific MiKTeX paths
 
 app = Flask(__name__)
 CORS(app)
@@ -253,27 +251,27 @@ def compile_latex_to_pdf(latex_content, temp_dir):
     
     return None, "All LaTeX compilers failed"
 
-def check_miktex_installation():
-    """Check if MikTeX is properly installed"""
+def check_latex_installation():
+    """Check if LaTeX is properly installed"""
     try:
         # Try to run pdflatex --version
         result = subprocess.run(['pdflatex', '--version'], capture_output=True, text=True, timeout=10)
         if result.returncode == 0:
-            logger.info("MikTeX pdflatex is available")
+            logger.info("LaTeX pdflatex is available")
             return True
     except Exception as e:
-        logger.warning(f"MikTeX check failed: {e}")
+        logger.warning(f"LaTeX check failed: {e}")
     
     return False
 
 @app.route('/api/health', methods=['GET'])
 def health():
     """Health check endpoint"""
-    miktex_available = check_miktex_installation()
+    latex_available = check_latex_installation()
     return jsonify({
         "status": "ok",
-        "miktex_available": miktex_available,
-        "message": "MikTeX is available" if miktex_available else "MikTeX not found - PDF generation may fail"
+        "latex_available": latex_available,
+        "message": "LaTeX is available" if latex_available else "LaTeX not found - PDF generation may fail"
     })
 
 @app.route('/api/generate-resume', methods=['POST'])
@@ -341,10 +339,10 @@ def preview_latex():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    # Check MikTeX installation on startup
-    if check_miktex_installation():
-        logger.info("MikTeX is available - PDF generation ready")
+    # Check LaTeX installation on startup
+    if check_latex_installation():
+        logger.info("LaTeX is available - PDF generation ready")
     else:
-        logger.warning("MikTeX not found - PDF generation will fail")
+        logger.warning("LaTeX not found - PDF generation will fail")
     
     app.run(debug=True, host='0.0.0.0', port=5000)
