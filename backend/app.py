@@ -47,8 +47,10 @@ def escape_latex(text):
 def generate_latex(data):
     """Generate LaTeX from JSON data"""
     
-    # Read template
-    with open('resume_template.tex', 'r') as f:
+    # Read template - use absolute path to ensure it's found
+    import os
+    template_path = os.path.join(os.path.dirname(__file__), 'resume_template.tex')
+    with open(template_path, 'r', encoding='utf-8') as f:
         template = f.read()
     
     # Replace profile section
@@ -203,10 +205,10 @@ def compile_latex_to_pdf(latex_content, temp_dir):
     ]
     
     pdf_file = os.path.join(temp_dir, 'resume.pdf')
-    
     for compiler_cmd in compilers:
         try:
             logger.info(f"Trying compiler: {compiler_cmd[0]}")
+            logger.info(f"Running command: {' '.join(compiler_cmd)}")
             
             # Run the compiler
             result = subprocess.run(
@@ -218,6 +220,8 @@ def compile_latex_to_pdf(latex_content, temp_dir):
             )
             
             logger.info(f"Compiler {compiler_cmd[0]} return code: {result.returncode}")
+            logger.info(f"STDOUT: {result.stdout[:300] if result.stdout else 'None'}...")
+            logger.info(f"STDERR: {result.stderr[:300] if result.stderr else 'None'}...")
             
             if result.returncode == 0 and os.path.exists(pdf_file):
                 logger.info(f"Successfully compiled with {compiler_cmd[0]}")
@@ -228,22 +232,23 @@ def compile_latex_to_pdf(latex_content, temp_dir):
                 
                 # Check for common special character errors
                 if "Undefined control sequence" in error_msg:
-                    logger.error(f"LaTeX compilation failed due to undefined control sequence (likely special character issue)")
-                    logger.error(f"Error details: {error_msg[:200]}...")
-                    return None, f"LaTeX compilation failed: Special character error. Check for unescaped characters like &, %, $, #, _, {{, }}, ~, ^, or \\"
+                    formatted_error = f"LaTeX Special character error. Check for unescaped characters like &, %, $, #, _, {{, }}, ~, ^, or \\\nSTDERR: {result.stderr[:500]}"
+                    logger.error(formatted_error)
+                    return None, formatted_error
                 elif "Missing" in error_msg and "item" in error_msg:
-                    logger.error(f"LaTeX compilation failed due to missing item")
-                    return None, f"LaTeX compilation failed: Template structure error"
+                    formatted_error = f"LaTeX Template structure error.\nSTDERR: {result.stderr[:500]}"
+                    logger.error(formatted_error)
+                    return None, formatted_error
                 else:
-                    logger.warning(f"Compiler {compiler_cmd[0]} failed:")
-                    logger.warning(f"STDOUT: {result.stdout}")
-                    logger.warning(f"STDERR: {result.stderr}")
+                    formatted_error = f"LaTeX compilation failed with {compiler_cmd[0]}.\nSTDOUT: {result.stdout[:500]}\nSTDERR: {result.stderr[:500]}"
+                    logger.error(formatted_error)
+                    # Don't return here, try next compiler
                 
         except subprocess.TimeoutExpired:
             logger.error(f"Compiler {compiler_cmd[0]} timed out")
             continue
         except FileNotFoundError:
-            logger.warning(f"Compiler {compiler_cmd[0]} not found")
+            logger.error(f"Compiler {compiler_cmd[0]} not found")
             continue
         except Exception as e:
             logger.error(f"Compiler {compiler_cmd[0]} failed with exception: {e}")
@@ -281,48 +286,77 @@ def generate_resume():
         # Get JSON data
         data = request.get_json()
         if not data:
+            logger.error("No JSON data provided")
             return jsonify({"error": "No JSON data provided"}), 400
         
         logger.info("Generating resume PDF...")
+        logger.info(f"Received data keys: {list(data.keys())}")
+        
+        # Check LaTeX availability first
+        if not check_latex_installation():
+            logger.error("LaTeX not available")
+            return jsonify({
+                "error": "LaTeX not installed",
+                "message": "PDF generation requires LaTeX to be installed"
+            }), 500
         
         # Generate LaTeX content
-        latex_content = generate_latex(data)
-        logger.info(f"Generated LaTeX content ({len(latex_content)} characters)")
+        try:
+            latex_content = generate_latex(data)
+            logger.info(f"Generated LaTeX content ({len(latex_content)} characters)")
+        except Exception as e:
+            logger.error(f"LaTeX generation failed: {e}")
+            return jsonify({
+                "error": "LaTeX generation failed",
+                "details": str(e)
+            }), 500
         
         # Create temporary directory for compilation
         with tempfile.TemporaryDirectory() as temp_dir:
             logger.info(f"Using temporary directory: {temp_dir}")
             
             # Compile LaTeX to PDF
-            pdf_file, error = compile_latex_to_pdf(latex_content, temp_dir)
-            
-            if pdf_file and os.path.exists(pdf_file):
-                # Read PDF content
-                with open(pdf_file, 'rb') as f:
-                    pdf_content = f.read()
+            try:
+                pdf_file, error = compile_latex_to_pdf(latex_content, temp_dir)
                 
-                logger.info(f"Successfully generated PDF ({len(pdf_content)} bytes)")
-                
-                # Return PDF
-                return Response(
-                    pdf_content,
-                    mimetype='application/pdf',
-                    headers={
-                        'Content-Disposition': 'inline; filename=resume.pdf',
-                        'Content-Length': str(len(pdf_content))
-                    }
-                )
-            else:
-                logger.error(f"PDF generation failed: {error}")
+                if pdf_file and os.path.exists(pdf_file):
+                    # Read PDF content
+                    with open(pdf_file, 'rb') as f:
+                        pdf_content = f.read()
+                    
+                    logger.info(f"Successfully generated PDF ({len(pdf_content)} bytes)")
+                    
+                    # Return PDF
+                    return Response(
+                        pdf_content,
+                        mimetype='application/pdf',
+                        headers={
+                            'Content-Disposition': 'inline; filename=resume.pdf',
+                            'Content-Length': str(len(pdf_content))
+                        }
+                    )
+                else:
+                    logger.error(f"PDF generation failed: {error}")
+                    return jsonify({
+                        "error": "PDF generation failed",
+                        "details": error,
+                        "message": "Unable to compile LaTeX to PDF. Check the logs for details."
+                    }), 500
+                    
+            except Exception as e:
+                logger.error(f"PDF compilation exception: {e}")
                 return jsonify({
-                    "error": "PDF generation failed",
-                    "details": error,
-                    "message": "Unable to compile LaTeX to PDF. Please check your LaTeX installation."
+                    "error": "PDF compilation exception",
+                    "details": str(e)
                 }), 500
                 
     except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        return jsonify({"error": str(e)}), 500
+        logger.error(f"Unexpected error in generate_resume: {e}")
+        logger.error(f"Error type: {type(e).__name__}")
+        return jsonify({
+            "error": "Internal server error",
+            "details": str(e)
+        }), 500
 
 @app.route('/api/preview-latex', methods=['POST'])
 def preview_latex():

@@ -80,46 +80,116 @@ https://your-service-name.onrender.com/api/health
 
 ## 🎨 Frontend Deployment (Vercel)
 
-### Step 1: Update Backend URL
+### Step 1: Prerequisites Check
 
-Before deploying frontend, update the backend URL in your code:
+Before deploying, ensure you have:
 
-1. **Edit `frontend/lib/services/pdf_service.dart`**
+- ✅ **Backend deployed and working** (LaTeX available)
+- ✅ **Firebase project configured** with Authentication and Firestore enabled
+- ✅ **Flutter SDK installed** locally (for testing)
+- ✅ **Git repository** with all code committed
+
+### Step 2: Update Backend URL
+
+**CRITICAL**: You must update the backend URL before deploying:
+
+1. **Get your Render backend URL**
+   - Go to your Render dashboard
+   - Copy your service URL (e.g., `https://resume-backend-abc123.onrender.com`)
+
+2. **Edit `frontend/lib/services/pdf_service.dart`**
    ```dart
-   // Replace this line:
+   // Find this line (around line 11):
    static const String _baseUrl = 'YOUR_RENDER_BACKEND_URL';
    
-   // With your actual Render URL:
-   static const String _baseUrl = 'https://your-service-name.onrender.com';
+   // Replace with your actual Render URL:
+   static const String _baseUrl = 'https://resume-backend-abc123.onrender.com';
    ```
 
-2. **Commit and push changes to GitHub**
+3. **Test locally** (optional but recommended):
+   ```bash
+   cd frontend
+   flutter pub get
+   flutter build web --release
+   flutter run -d chrome
+   ```
 
-### Step 2: Deploy to Vercel
+4. **Commit and push changes**:
+   ```bash
+   git add frontend/lib/services/pdf_service.dart
+   git commit -m "Update backend URL for production"
+   git push
+   ```
+
+### Step 3: Deploy to Vercel
 
 1. **Go to [Vercel.com](https://vercel.com)**
-   - Sign up or login to your account
+   - Sign up with GitHub (recommended)
+   - Or sign up with email and connect GitHub later
 
 2. **Import Project**
-   - Click "New Project"
-   - Import your GitHub repository
+   - Click **"New Project"**
+   - Find your `resume_ultrapromax` repository
+   - Click **"Import"**
 
-3. **Configure Project**
+3. **Configure Project Settings**
    ```
+   Project Name: resume-ultrapromax (or your preferred name)
    Framework Preset: Other
    Root Directory: frontend
+   ```
+
+4. **Build Settings** (VERY IMPORTANT)
+   ```
    Build Command: flutter build web --release
    Output Directory: build/web
    Install Command: flutter pub get
    ```
 
-4. **Environment Variables** (if needed)
-   - Add any Firebase configuration if not already in code
+5. **Environment Variables** (if needed)
+   - Most Firebase config is in your code, but if you have any secrets:
+   - Click **"Add"** and add any environment variables
+   - Usually not needed for this project
 
-5. **Deploy**
-   - Click "Deploy"
-   - Wait for build to complete
+6. **Deploy**
+   - Click **"Deploy"**
+   - Wait for build to complete (5-10 minutes)
    - Note your Vercel URL (e.g., `https://resume-ultrapromax.vercel.app`)
+
+### Step 4: Verify Deployment
+
+1. **Visit your Vercel URL**
+2. **Test the complete flow**:
+   - Landing page loads ✅
+   - Click "Get Started" → Google Sign-In dialog appears ✅
+   - Sign in with Google ✅
+   - Resume builder loads ✅
+   - Fill out some data ✅
+   - Click "Save" → Success message ✅
+   - Click "Generate Preview" → PDF generates ✅
+   - Download PDF works ✅
+
+### Step 5: Update Firebase Settings (if needed)
+
+If you encounter CORS issues:
+
+1. **Go to Firebase Console**
+2. **Authentication → Settings → Authorized domains**
+3. **Add your Vercel domain**:
+   ```
+   resume-ultrapromax.vercel.app
+   ```
+4. **Firestore → Rules** (if needed):
+   ```javascript
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{userId} {
+         allow read, write: if request.auth != null && request.auth.uid == userId;
+       }
+     }
+   }
+   ```
 
 ## 🔗 Integration Testing
 
