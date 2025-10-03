@@ -9,7 +9,7 @@
 - **Project Name:** Resume UltraProMax
 - **Platform:** Flutter Web
 - **Frontend Deployment:** Vercel
-- **Backend Deployment:** Railway (Already Implemented)
+- **Backend Deployment:** Render (Already Implemented)
 - **Backend Framework:** Flask (Python)
 - **Authentication:** Firebase Authentication (Google Sign-In)
 - **Database:** Cloud Firestore
@@ -47,7 +47,7 @@ Cloud Platform: Firebase (Google Cloud)
 
 Backend Framework: Flask (Python) - Already Implemented
 PDF Generation: LaTeX (pdflatex) - Already Implemented
-Backend Hosting: Railway
+Backend Hosting: Render
 API Communication: HTTP REST API
 ```
 
@@ -2744,8 +2744,8 @@ import 'package:http/http.dart' as http;
 import '../features/builder/models/resume_data.dart';
 
 class PDFService {
-  // Backend API URL (replace with your Railway URL)
-  static const String _baseUrl = 'YOUR_RAILWAY_BACKEND_URL';
+  // Backend API URL (replace with your Render URL)
+  static const String _baseUrl = 'YOUR_RENDER_BACKEND_URL';
   
   /// Generate PDF from resume data
   Future<String> generatePDF(ResumeData resumeData) async {
