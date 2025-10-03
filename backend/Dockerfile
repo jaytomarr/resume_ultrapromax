@@ -4,8 +4,14 @@ FROM python:3.12-slim
 # Set working directory
 WORKDIR /app
 
-# Install minimal LaTeX for free tier
-RUN apt-get update && apt-get install -y texlive-latex-base && \
+# Install comprehensive LaTeX packages + curl for health check
+RUN apt-get update && apt-get install -y \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-xetex \
+    texlive-luatex \
+    curl && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
@@ -20,9 +26,9 @@ COPY . .
 # Expose port
 EXPOSE 5000
 
-# Health check
+# Health check - use environment PORT or default to 5000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/api/health || exit 1
+    CMD curl -f http://localhost:${PORT:-5000}/api/health || exit 1
 
-# Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "app:app"]
+# Run the application - use PORT environment variable for Render
+CMD gunicorn --bind 0.0.0.0:${PORT:-5000} --workers 2 app:app

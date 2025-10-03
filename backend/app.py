@@ -379,4 +379,6 @@ if __name__ == '__main__':
     else:
         logger.warning("LaTeX not found - PDF generation will fail")
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Use Render's PORT environment variable or default to 5000 for local development
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
