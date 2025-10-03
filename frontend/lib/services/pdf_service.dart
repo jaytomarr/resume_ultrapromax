@@ -8,7 +8,7 @@ import '../features/builder/models/resume_data.dart';
 /// PDF service for backend API communication
 class PDFService {
   // Backend API URL - update this for production deployment
-  static const String _baseUrl = 'YOUR_RENDER_BACKEND_URL';
+  static const String _baseUrl = 'https://resume-backend-3ijy.onrender.com';
 
   /// Generate PDF from resume data
   /// Returns a URL usable to preview/download the PDF (Blob URL on web, data URL fallback otherwise)

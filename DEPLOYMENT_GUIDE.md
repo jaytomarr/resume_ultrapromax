@@ -43,6 +43,23 @@ Make sure your `backend/` directory contains:
    Start Command: gunicorn --bind 0.0.0.0:$PORT app:app
    ```
 
+   **⚠️ IMPORTANT: For PDF Generation to Work**
+   
+   Since your app generates PDFs using LaTeX, you need to install LaTeX system dependencies. Choose one of these options:
+
+   **Option A: Use Docker (Recommended)**
+   ```
+   Environment: Docker
+   Dockerfile Path: backend/Dockerfile
+   ```
+   The Dockerfile already includes LaTeX installation.
+
+   **Option B: Add Build Script**
+   ```
+   Build Command: apt-get update && apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended && pip install -r requirements.txt
+   Start Command: gunicorn --bind 0.0.0.0:$PORT app:app
+   ```
+
 5. **Advanced Settings**
    ```
    Health Check Path: /api/health
@@ -142,6 +159,22 @@ Before deploying frontend, update the backend URL in your code:
 - Ensure `/api/health` endpoint exists in your Flask app
 - Check if service is binding to `0.0.0.0:$PORT`
 
+**Problem: LaTeX not available (`"latex_available": false`)**
+- This means PDF generation will fail
+- **Solution 1**: Switch to Docker deployment (recommended)
+  - Go to Render dashboard → Settings → Environment
+  - Change from "Python 3" to "Docker"
+  - Set Dockerfile Path to `backend/Dockerfile`
+  - Redeploy
+- **Solution 2**: Add LaTeX to build command
+  - Go to Render dashboard → Settings → Build & Deploy
+  - Update Build Command to:
+    ```
+    apt-get update && apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended && pip install -r requirements.txt
+    ```
+  - Redeploy
+- **Verify**: Check `/api/health` should return `"latex_available": true`
+
 ### Frontend Issues
 
 **Problem: Build fails**
@@ -215,6 +248,7 @@ Before deploying frontend, update the backend URL in your code:
 Before going live:
 
 - [ ] Backend deployed and health check passes
+- [ ] **LaTeX available** (`/api/health` returns `"latex_available": true`)
 - [ ] Frontend deployed and loads correctly
 - [ ] Google Sign-In works in production
 - [ ] Resume data saves to Firestore
