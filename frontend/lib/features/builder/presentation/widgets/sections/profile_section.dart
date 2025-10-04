@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../core/constants/app_constants.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../../core/utils/validators.dart';
 import '../../../../../shared/widgets/notion_text_field.dart';
 import '../../../../../shared/widgets/section_card.dart';
@@ -129,30 +131,51 @@ class _ProfileSectionState extends ConsumerState<ProfileSection> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Full Name
-            NotionTextField(
-              label: AppConstants.labelFullName,
-              controller: _nameController,
-              hintText: AppConstants.placeholderName,
-              validator: (value) =>
-                  Validators.validateRequired(value, fieldName: 'Full name'),
-              textCapitalization: TextCapitalization.words,
+            // Basic Information - Row Layout
+            Text(
+              'Basic Information',
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: AppColors.textDark,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            Row(
+              children: [
+                // Full Name - Takes up 2/3 of the row
+                Expanded(
+                  flex: 2,
+                  child: NotionTextField(
+                    label: AppConstants.labelFullName,
+                    controller: _nameController,
+                    hintText: AppConstants.placeholderName,
+                    validator: (value) => Validators.validateRequired(
+                      value,
+                      fieldName: 'Full name',
+                    ),
+                    textCapitalization: TextCapitalization.words,
+                  ),
+                ),
+                const SizedBox(width: AppConstants.spacingMD),
+                // Phone - Takes up 1/3 of the row
+                Expanded(
+                  flex: 1,
+                  child: NotionTextField(
+                    label: AppConstants.labelPhone,
+                    controller: _phoneController,
+                    hintText: AppConstants.placeholderPhone,
+                    keyboardType: TextInputType.phone,
+                    validator: Validators.validatePhone,
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: AppConstants.spacingMD),
 
-            // Phone
-            NotionTextField(
-              label: AppConstants.labelPhone,
-              controller: _phoneController,
-              hintText: AppConstants.placeholderPhone,
-              keyboardType: TextInputType.phone,
-              validator: Validators.validatePhone,
-            ),
-
-            const SizedBox(height: AppConstants.spacingMD),
-
-            // Email
+            // Contact Information - Full Width Email
             NotionTextField(
               label: AppConstants.labelEmail,
               controller: _emailController,
@@ -162,35 +185,48 @@ class _ProfileSectionState extends ConsumerState<ProfileSection> {
               enabled: true,
             ),
 
-            const SizedBox(height: AppConstants.spacingMD),
+            const SizedBox(height: AppConstants.spacingLG),
 
-            // LinkedIn URL
-            NotionTextField(
-              label: AppConstants.labelLinkedIn,
-              controller: _linkedinController,
-              hintText: AppConstants.placeholderLinkedIn,
-              keyboardType: TextInputType.url,
-              validator: Validators.validateLinkedIn,
-              helperText:
-                  'Optional - Enter your LinkedIn profile URL or username',
+            // Social Links - Row Layout
+            Text(
+              'Social Links',
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: AppColors.textDark,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            Row(
+              children: [
+                Expanded(
+                  child: NotionTextField(
+                    label: AppConstants.labelLinkedIn,
+                    controller: _linkedinController,
+                    hintText: AppConstants.placeholderLinkedIn,
+                    keyboardType: TextInputType.url,
+                    validator: Validators.validateLinkedIn,
+                    helperText: 'Optional',
+                  ),
+                ),
+                const SizedBox(width: AppConstants.spacingMD),
+                Expanded(
+                  child: NotionTextField(
+                    label: AppConstants.labelGitHub,
+                    controller: _githubController,
+                    hintText: AppConstants.placeholderGitHub,
+                    keyboardType: TextInputType.url,
+                    validator: Validators.validateGitHub,
+                    helperText: 'Optional',
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: AppConstants.spacingMD),
 
-            // GitHub URL
-            NotionTextField(
-              label: AppConstants.labelGitHub,
-              controller: _githubController,
-              hintText: AppConstants.placeholderGitHub,
-              keyboardType: TextInputType.url,
-              validator: Validators.validateGitHub,
-              helperText:
-                  'Optional - Enter your GitHub profile URL or username',
-            ),
-
-            const SizedBox(height: AppConstants.spacingMD),
-
-            // Website URL
+            // Website - Full Width
             NotionTextField(
               label: AppConstants.labelWebsite,
               controller: _websiteController,
@@ -200,11 +236,20 @@ class _ProfileSectionState extends ConsumerState<ProfileSection> {
               helperText: 'Optional - Enter your personal website URL',
             ),
 
-            const SizedBox(height: AppConstants.spacingMD),
+            const SizedBox(height: AppConstants.spacingLG),
 
-            // Professional Summary
+            // Professional Summary - Full Width
+            Text(
+              'Professional Summary',
+              style: AppTextStyles.bodyMedium.copyWith(
+                color: AppColors.textDark,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 12),
             NotionTextField(
-              label: AppConstants.labelSummary,
+              label: null, // No label since we have a section title above
               controller: _summaryController,
               hintText: AppConstants.placeholderSummary,
               maxLines: 4,

@@ -68,8 +68,11 @@ class _PreviewPageState extends ConsumerState<PreviewPage> {
       final viewType = 'pdf-frame-${DateTime.now().millisecondsSinceEpoch}';
       // Register factory that builds an iframe pointing to the blob/data URL
       ui.platformViewRegistry.registerViewFactory(viewType, (int viewId) {
+        // Add PDF.js viewer parameters to hide controls and set zoom to fit width
+        final enhancedPdfUrl = '$_pdfUrl#toolbar=0&navpanes=0&zoom=page-width';
+
         final iframe = html.IFrameElement()
-          ..src = _pdfUrl!
+          ..src = enhancedPdfUrl
           ..style.border = 'none'
           ..width = '100%'
           ..height = '100%';
@@ -113,7 +116,7 @@ class _PreviewPageState extends ConsumerState<PreviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primaryYellow,
       body: Stack(
         children: [
           Column(
@@ -125,29 +128,110 @@ class _PreviewPageState extends ConsumerState<PreviewPage> {
                   horizontal: AppConstants.spacingLG,
                 ),
                 decoration: const BoxDecoration(
-                  color: AppColors.background,
+                  color: AppColors.bgDark,
                   border: Border(
-                    bottom: BorderSide(color: AppColors.border, width: 1),
+                    bottom: BorderSide(color: AppColors.textDark, width: 2),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.textDark,
+                      offset: Offset(0, 2),
+                      blurRadius: 0,
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: [
                     // Back Button
-                    NotionButton(
-                      text: AppConstants.buttonBackToEditor,
-                      icon: Icons.arrow_back,
-                      isSecondary: true,
-                      onPressed: _goBack,
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: _goBack,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primaryYellow,
+                          foregroundColor: AppColors.textDark,
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(
+                              color: AppColors.textDark,
+                              width: 2,
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 16,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.arrow_back, size: 18),
+                            const SizedBox(width: 8),
+                            Text(
+                              AppConstants.buttonBackToEditor,
+                              style: AppTextStyles.buttonText.copyWith(
+                                color: AppColors.textDark,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
 
                     const Spacer(),
 
                     // Download Button
-                    NotionButton(
-                      text: AppConstants.buttonDownloadPDF,
-                      icon: Icons.download,
-                      isLoading: _isLoading,
-                      onPressed: _pdfUrl != null ? _downloadPDF : null,
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: _pdfUrl != null ? _downloadPDF : null,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: _pdfUrl != null
+                              ? AppColors.accentOrange
+                              : AppColors.cardPink,
+                          foregroundColor: AppColors.textDark,
+                          disabledBackgroundColor: AppColors.cardPink,
+                          disabledForegroundColor: AppColors.textDark,
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            side: const BorderSide(
+                              color: AppColors.textDark,
+                              width: 2,
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 16,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.download,
+                              size: 18,
+                              color: _isLoading
+                                  ? AppColors.textDark
+                                  : AppColors.textDark,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              AppConstants.buttonDownloadPDF,
+                              style: AppTextStyles.buttonText.copyWith(
+                                color: AppColors.textDark,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -156,6 +240,19 @@ class _PreviewPageState extends ConsumerState<PreviewPage> {
               // PDF Viewer Area
               Expanded(
                 child: Container(
+                  margin: const EdgeInsets.all(AppConstants.spacingLG),
+                  decoration: BoxDecoration(
+                    color: AppColors.cardWhite,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: AppColors.textDark, width: 2),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: AppColors.textDark,
+                        offset: Offset(4, 4),
+                        blurRadius: 0,
+                      ),
+                    ],
+                  ),
                   padding: const EdgeInsets.all(AppConstants.spacingLG),
                   child: Center(
                     child: Container(

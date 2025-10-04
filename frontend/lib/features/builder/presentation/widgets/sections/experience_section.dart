@@ -152,7 +152,7 @@ class _ExperienceEntryState extends ConsumerState<_ExperienceEntry> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingMD),
+      padding: const EdgeInsets.all(AppConstants.spacingSM),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(6),
@@ -168,8 +168,8 @@ class _ExperienceEntryState extends ConsumerState<_ExperienceEntry> {
                 child: Text(
                   'Experience ${widget.index + 1}',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textDark,
                   ),
                 ),
               ),
@@ -190,58 +190,72 @@ class _ExperienceEntryState extends ConsumerState<_ExperienceEntry> {
             ],
           ),
 
-          const SizedBox(height: AppConstants.spacingMD),
+          const SizedBox(height: AppConstants.spacingSM),
 
-          // Company
-          NotionTextField(
-            label: AppConstants.labelCompany,
-            controller: _companyController,
-            hintText: AppConstants.placeholderCompany,
-            onChanged: (_) => _updateExperience(),
+          // First Row - Company and Location
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: NotionTextField(
+                  label: AppConstants.labelCompany,
+                  controller: _companyController,
+                  hintText: AppConstants.placeholderCompany,
+                  onChanged: (_) => _updateExperience(),
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingMD),
+              Expanded(
+                flex: 1,
+                child: NotionTextField(
+                  label: AppConstants.labelLocation,
+                  controller: _locationController,
+                  hintText: AppConstants.placeholderLocation,
+                  onChanged: (_) => _updateExperience(),
+                ),
+              ),
+            ],
           ),
 
           const SizedBox(height: AppConstants.spacingMD),
 
-          // Role/Position
-          NotionTextField(
-            label: AppConstants.labelRole,
-            controller: _roleController,
-            hintText: AppConstants.placeholderRole,
-            onChanged: (_) => _updateExperience(),
+          // Second Row - Role and Date
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: NotionTextField(
+                  label: AppConstants.labelRole,
+                  controller: _roleController,
+                  hintText: AppConstants.placeholderRole,
+                  onChanged: (_) => _updateExperience(),
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingMD),
+              Expanded(
+                flex: 1,
+                child: NotionTextField(
+                  label: AppConstants.labelDate,
+                  controller: _dateController,
+                  hintText: AppConstants.placeholderDate,
+                  onChanged: (_) => _updateExperience(),
+                ),
+              ),
+            ],
           ),
 
-          const SizedBox(height: AppConstants.spacingMD),
-
-          // Location
-          NotionTextField(
-            label: AppConstants.labelLocation,
-            controller: _locationController,
-            hintText: AppConstants.placeholderLocation,
-            onChanged: (_) => _updateExperience(),
-          ),
-
-          const SizedBox(height: AppConstants.spacingMD),
-
-          // Date/Duration
-          NotionTextField(
-            label: AppConstants.labelDate,
-            controller: _dateController,
-            hintText: AppConstants.placeholderDate,
-            onChanged: (_) => _updateExperience(),
-          ),
-
-          const SizedBox(height: AppConstants.spacingMD),
+          const SizedBox(height: AppConstants.spacingSM),
 
           // Points
           Text(
             'Key Points:',
             style: AppTextStyles.bodyMedium.copyWith(
               fontWeight: FontWeight.w500,
-              color: AppColors.textPrimary,
+              color: AppColors.textDark,
             ),
           ),
 
-          const SizedBox(height: AppConstants.spacingSM),
+          const SizedBox(height: 8),
 
           ..._pointControllers.asMap().entries.map((entry) {
             final pointIndex = entry.key;
@@ -249,7 +263,7 @@ class _ExperienceEntryState extends ConsumerState<_ExperienceEntry> {
             final isFirst = pointIndex == 0;
 
             return Container(
-              margin: const EdgeInsets.only(bottom: AppConstants.spacingSM),
+              margin: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [
                   Expanded(

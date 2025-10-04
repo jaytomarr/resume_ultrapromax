@@ -149,7 +149,7 @@ class _BuilderPageState extends ConsumerState<BuilderPage> {
     }
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.bgDark,
       body: Stack(
         children: [
           Row(
@@ -158,7 +158,12 @@ class _BuilderPageState extends ConsumerState<BuilderPage> {
               Container(
                 width: AppConstants.sidebarWidth,
                 height: double.infinity,
-                color: AppColors.sidebarBackground,
+                decoration: const BoxDecoration(
+                  color: AppColors.cardPink,
+                  border: Border(
+                    right: BorderSide(color: AppColors.textDark, width: 2),
+                  ),
+                ),
                 child: SidebarMenu(
                   currentUser: currentUser,
                   onSectionTap: _scrollToSection,
@@ -214,65 +219,198 @@ class _BuilderPageState extends ConsumerState<BuilderPage> {
                         padding: const EdgeInsets.all(AppConstants.spacingLG),
                         child: Column(
                           children: [
-                            // Profile Section
+                            // Profile Section (White Background)
                             Container(
                               key: _sectionKeys['profile'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
                               ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.cardWhite,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                              ),
                               child: const ProfileSection(),
                             ),
 
-                            // Education Section
+                            // Education Section (Yellow Background)
                             Container(
                               key: _sectionKeys['education'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
                               ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.primaryYellow,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                              ),
                               child: const EducationSection(),
                             ),
 
-                            // Experience Section
+                            // Experience Section (White Background)
                             Container(
                               key: _sectionKeys['experience'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
                               ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.cardWhite,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                              ),
                               child: const ExperienceSection(),
                             ),
 
-                            // Projects Section
+                            // Projects Section (Yellow Background)
                             Container(
                               key: _sectionKeys['projects'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
                               ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.primaryYellow,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                              ),
                               child: const ProjectsSection(),
                             ),
 
-                            // Skills Section
+                            // Skills Section (White Background)
                             Container(
                               key: _sectionKeys['skills'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
                               ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.cardWhite,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                              ),
                               child: const SkillsSection(),
                             ),
 
-                            // Leadership Section
+                            // Leadership Section (Yellow Background)
                             Container(
                               key: _sectionKeys['leadership'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
                               ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.primaryYellow,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
+                              ),
                               child: const LeadershipSection(),
                             ),
 
-                            // Achievements Section
+                            // Achievements Section (White Background)
                             Container(
                               key: _sectionKeys['achievements'],
                               margin: const EdgeInsets.only(
                                 bottom: AppConstants.spacingLG,
+                              ),
+                              decoration: const BoxDecoration(
+                                color: AppColors.cardWhite,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                border: Border.symmetric(
+                                  vertical: BorderSide(
+                                    color: AppColors.textDark,
+                                    width: 2,
+                                  ),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.textDark,
+                                    offset: Offset(4, 4),
+                                    blurRadius: 0,
+                                  ),
+                                ],
                               ),
                               child: const AchievementsSection(),
                             ),

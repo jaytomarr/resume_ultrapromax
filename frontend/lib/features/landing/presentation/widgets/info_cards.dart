@@ -1,108 +1,196 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_text_styles.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_styles.dart';
 
-/// Information cards section for landing page
+/// Info cards section showing how the app works
 class InfoCards extends StatelessWidget {
   const InfoCards({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        children: [
-          Text(
-            'How it works',
-            style: AppTextStyles.h2.copyWith(color: AppColors.textPrimary),
-            textAlign: TextAlign.center,
-          ),
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height * 0.5,
+      ),
+      decoration: const BoxDecoration(color: AppColors.primaryYellow),
+      child: Center(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Determine if mobile or desktop
+            bool isMobile = constraints.maxWidth < 768;
 
-          const SizedBox(height: 48),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _InfoCard(
-                icon: Icons.edit,
-                title: 'Fill Details',
-                description:
-                    'Enter your professional information using our intuitive form.',
+            return Container(
+              width: isMobile
+                  ? constraints.maxWidth * 0.9
+                  : constraints.maxWidth * 0.9,
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 20 : 40,
+                vertical: isMobile ? 12 : 20,
               ),
-              _InfoCard(
-                icon: Icons.visibility,
-                title: 'Preview',
-                description: 'See how your resume looks before downloading.',
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'How it works',
+                    style: AppTextStyles.sectionHeading.copyWith(
+                      fontSize: isMobile ? 20 : 28,
+                      color: AppColors.textDark,
+                      fontWeight: isMobile ? FontWeight.w700 : null,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: isMobile ? 12 : 16),
+                  if (isMobile)
+                    SizedBox(
+                      width: constraints.maxWidth * 0.8,
+                      child: Column(
+                        children: [
+                          _ProcessCard(
+                            icon: Icons.edit,
+                            title: 'Fill Details',
+                            description:
+                                'Enter your professional information using our intuitive form.',
+                            isMobile: isMobile,
+                          ),
+                          SizedBox(height: isMobile ? 12 : 16),
+                          _ProcessCard(
+                            icon: Icons.visibility,
+                            title: 'Preview',
+                            description:
+                                'See how your resume looks before downloading.',
+                            isMobile: isMobile,
+                          ),
+                          SizedBox(height: isMobile ? 12 : 16),
+                          _ProcessCard(
+                            icon: Icons.download,
+                            title: 'Download',
+                            description:
+                                'Get your professional PDF resume instantly.',
+                            isMobile: isMobile,
+                          ),
+                        ],
+                      ),
+                    )
+                  else
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _ProcessCard(
+                            icon: Icons.edit,
+                            title: 'Fill Details',
+                            description:
+                                'Enter your professional information using our intuitive form.',
+                            isMobile: isMobile,
+                          ),
+                          SizedBox(width: 24),
+                          _ProcessCard(
+                            icon: Icons.visibility,
+                            title: 'Preview',
+                            description:
+                                'See how your resume looks before downloading.',
+                            isMobile: isMobile,
+                          ),
+                          SizedBox(width: 24),
+                          _ProcessCard(
+                            icon: Icons.download,
+                            title: 'Download',
+                            description:
+                                'Get your professional PDF resume instantly.',
+                            isMobile: isMobile,
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
               ),
-              _InfoCard(
-                icon: Icons.download,
-                title: 'Download',
-                description: 'Get your professional PDF resume instantly.',
-              ),
-            ],
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class _InfoCard extends StatelessWidget {
+class _ProcessCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
+  final bool isMobile;
 
-  const _InfoCard({
+  const _ProcessCard({
     required this.icon,
     required this.title,
     required this.description,
+    required this.isMobile,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280,
-      padding: const EdgeInsets.all(24),
+      width: isMobile ? double.infinity : 280,
       decoration: BoxDecoration(
-        color: AppColors.background,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.border),
+        color: AppColors.cardWhite,
+        borderRadius: BorderRadius.circular(isMobile ? 8 : 20),
+        border: Border.all(color: AppColors.textDark, width: 2),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadowLight,
-            blurRadius: 4,
-            offset: const Offset(0, 2),
+            color: AppColors.textDark,
+            offset: Offset(isMobile ? 2 : 4, isMobile ? 2 : 4),
+            blurRadius: 0,
           ),
         ],
       ),
       child: Column(
         children: [
+          // Icon Container
           Container(
-            width: 64,
-            height: 64,
+            height: isMobile ? 60 : 100,
+            width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColors.surface,
-              borderRadius: BorderRadius.circular(32),
+              color: AppColors.cardPink,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(isMobile ? 6 : 18),
+                topRight: Radius.circular(isMobile ? 6 : 18),
+              ),
             ),
-            child: Icon(icon, size: 32, color: AppColors.primary),
+            child: Center(
+              child: Icon(
+                icon,
+                size: isMobile ? 30 : 50,
+                color: AppColors.textDark,
+              ),
+            ),
           ),
 
-          const SizedBox(height: 16),
-
-          Text(
-            title,
-            style: AppTextStyles.h3.copyWith(color: AppColors.textPrimary),
-            textAlign: TextAlign.center,
-          ),
-
-          const SizedBox(height: 8),
-
-          Text(
-            description,
-            style: AppTextStyles.bodyMedium.copyWith(
-              color: AppColors.textSecondary,
+          // Content
+          Container(
+            padding: EdgeInsets.all(isMobile ? 10 : 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyles.cardTitle.copyWith(
+                    fontSize: isMobile ? 20 : 22,
+                    fontWeight: isMobile ? FontWeight.w700 : null,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: isMobile ? 8 : 12),
+                Text(
+                  description,
+                  style: AppTextStyles.bodyText.copyWith(
+                    fontSize: isMobile ? 14 : 14,
+                    height: 1.4,
+                    fontWeight: isMobile ? FontWeight.w400 : null,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),

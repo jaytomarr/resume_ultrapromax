@@ -47,7 +47,7 @@ class NotionButton extends StatelessWidget {
 
     return SizedBox(
       width: width,
-      height: height ?? 36,
+      height: height ?? 44,
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
@@ -56,8 +56,8 @@ class NotionButton extends StatelessWidget {
           elevation: 0,
           shadowColor: Colors.transparent,
           side: BorderSide(color: borderColor, width: 1),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
         child: isLoading
             ? SizedBox(

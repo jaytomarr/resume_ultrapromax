@@ -25,20 +25,32 @@ class NotionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      child: Material(
-        color: backgroundColor ?? AppColors.background,
-        borderRadius: BorderRadius.circular(6),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(6),
-          hoverColor: showHoverEffect ? AppColors.surfaceHover : null,
-          child: Container(
-            padding: padding ?? const EdgeInsets.all(AppConstants.cardPadding),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(color: AppColors.border, width: 1),
+      decoration: BoxDecoration(
+        color: backgroundColor ?? AppColors.cardWhite,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.textDark, width: 2),
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.textDark,
+            offset: Offset(2, 2),
+            blurRadius: 0,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Material(
+          color: backgroundColor ?? AppColors.cardWhite,
+          child: InkWell(
+            onTap: onTap,
+            hoverColor: showHoverEffect
+                ? AppColors.cardPink.withOpacity(0.3)
+                : null,
+            child: Container(
+              padding:
+                  padding ?? const EdgeInsets.all(AppConstants.cardPadding),
+              child: child,
             ),
-            child: child,
           ),
         ),
       ),

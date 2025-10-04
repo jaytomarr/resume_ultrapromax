@@ -3,15 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 import 'app_text_styles.dart';
 
-/// Notion-inspired theme configuration
+/// Super Hello theme configuration
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primary,
+        seedColor: AppColors.accentOrange,
         brightness: Brightness.light,
-        primary: AppColors.primary,
+        primary: AppColors.accentOrange,
         secondary: AppColors.textSecondary,
         surface: AppColors.surface,
         surfaceContainerHighest: AppColors.background,
@@ -44,38 +44,41 @@ class AppTheme {
         ),
       ),
 
-      // Card Theme
+      // Card Theme (Super Hello style)
       cardTheme: CardThemeData(
-        color: AppColors.background,
+        color: AppColors.cardWhite,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-          side: const BorderSide(color: AppColors.border, width: 1),
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(color: AppColors.textDark, width: 2),
         ),
         margin: EdgeInsets.zero,
       ),
 
-      // Elevated Button Theme
+      // Elevated Button Theme (Super Hello style)
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: AppColors.accentOrange,
+          foregroundColor: AppColors.textDark,
           elevation: 0,
           shadowColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(color: AppColors.textDark, width: 2),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           textStyle: AppTextStyles.buttonText,
         ),
       ),
 
-      // Outlined Button Theme
+      // Outlined Button Theme (Super Hello style)
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          backgroundColor: AppColors.surface,
-          foregroundColor: AppColors.textPrimary,
-          side: const BorderSide(color: AppColors.border, width: 1),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          backgroundColor: AppColors.cardWhite,
+          foregroundColor: AppColors.textDark,
+          side: const BorderSide(color: AppColors.textDark, width: 2),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           textStyle: AppTextStyles.buttonTextSecondary,
         ),
       ),
@@ -83,11 +86,11 @@ class AppTheme {
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: AppColors.accentOrange,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           textStyle: AppTextStyles.buttonTextSecondary.copyWith(
-            color: AppColors.primary,
+            color: AppColors.accentOrange,
           ),
         ),
       ),

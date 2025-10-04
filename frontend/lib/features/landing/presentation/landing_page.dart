@@ -41,7 +41,7 @@ class _LandingPageState extends State<LandingPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.primaryYellow,
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: Column(

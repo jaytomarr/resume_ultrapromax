@@ -150,7 +150,7 @@ class _EducationEntryState extends ConsumerState<_EducationEntry> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingMD),
+      padding: const EdgeInsets.all(AppConstants.spacingSM),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(6),
@@ -166,8 +166,8 @@ class _EducationEntryState extends ConsumerState<_EducationEntry> {
                 child: Text(
                   'Education ${widget.index + 1}',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textDark,
                   ),
                 ),
               ),
@@ -192,45 +192,58 @@ class _EducationEntryState extends ConsumerState<_EducationEntry> {
             ],
           ),
 
-          const SizedBox(height: AppConstants.spacingMD),
+          const SizedBox(height: AppConstants.spacingSM),
 
-          // University/Institution
-          NotionTextField(
-            label: AppConstants.labelUniversity,
-            controller: _universityController,
-            hintText: AppConstants.placeholderUniversity,
-            onChanged: (_) => _updateEducation(),
+          // First Row - University and Date
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: NotionTextField(
+                  label: AppConstants.labelUniversity,
+                  controller: _universityController,
+                  hintText: AppConstants.placeholderUniversity,
+                  onChanged: (_) => _updateEducation(),
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingMD),
+              Expanded(
+                flex: 1,
+                child: NotionTextField(
+                  label: AppConstants.labelDate,
+                  controller: _dateController,
+                  hintText: AppConstants.placeholderDate,
+                  onChanged: (_) => _updateEducation(),
+                ),
+              ),
+            ],
           ),
 
           const SizedBox(height: AppConstants.spacingMD),
 
-          // Degree/Program
-          NotionTextField(
-            label: AppConstants.labelDegree,
-            controller: _degreeController,
-            hintText: AppConstants.placeholderDegree,
-            onChanged: (_) => _updateEducation(),
-          ),
-
-          const SizedBox(height: AppConstants.spacingMD),
-
-          // Date/Duration
-          NotionTextField(
-            label: AppConstants.labelDate,
-            controller: _dateController,
-            hintText: AppConstants.placeholderDate,
-            onChanged: (_) => _updateEducation(),
-          ),
-
-          const SizedBox(height: AppConstants.spacingMD),
-
-          // CGPA/GPA
-          NotionTextField(
-            label: AppConstants.labelCGPA,
-            controller: _cgpaController,
-            hintText: AppConstants.placeholderCGPA,
-            helperText: 'Optional',
-            onChanged: (_) => _updateEducation(),
+          // Second Row - Degree and CGPA
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: NotionTextField(
+                  label: AppConstants.labelDegree,
+                  controller: _degreeController,
+                  hintText: AppConstants.placeholderDegree,
+                  onChanged: (_) => _updateEducation(),
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingMD),
+              Expanded(
+                flex: 1,
+                child: NotionTextField(
+                  label: AppConstants.labelCGPA,
+                  controller: _cgpaController,
+                  hintText: AppConstants.placeholderCGPA,
+                  onChanged: (_) => _updateEducation(),
+                ),
+              ),
+            ],
           ),
         ],
       ),

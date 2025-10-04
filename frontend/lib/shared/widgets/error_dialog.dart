@@ -79,7 +79,7 @@ class ErrorDialog extends StatelessWidget {
                           onSecondaryPressed ??
                           () => Navigator.of(context).pop(),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
                       child: Text(secondaryButtonText!),
                     ),
@@ -92,7 +92,7 @@ class ErrorDialog extends StatelessWidget {
                         onPrimaryPressed ?? () => Navigator.of(context).pop(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
                     child: Text(
                       primaryButtonText ?? AppConstants.buttonGotIt,

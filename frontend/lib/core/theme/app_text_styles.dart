@@ -2,47 +2,79 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
-/// Notion-inspired typography system
+/// Super Hello typography system
 class AppTextStyles {
   // Font family
   static const String fontFamily = 'Inter';
 
-  // Heading Styles
+  // Hero Title - "super hello" style
+  static TextStyle get heroTitle => GoogleFonts.inter(
+    fontSize: 96,
+    fontWeight: FontWeight.w800,
+    color: AppColors.textWhite,
+    letterSpacing: -2,
+  );
+
+  // Heading Styles (Super Hello inspired)
   static TextStyle get h1 => GoogleFonts.inter(
-    fontSize: 40,
-    fontWeight: FontWeight.bold,
-    letterSpacing: -0.8,
+    fontSize: 48,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textDark,
+    letterSpacing: -1,
     height: 1.2,
-    color: AppColors.textPrimary,
   );
 
   static TextStyle get h2 => GoogleFonts.inter(
-    fontSize: 28,
-    fontWeight: FontWeight.bold,
-    letterSpacing: -0.4,
+    fontSize: 32,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textDark,
+    letterSpacing: -0.5,
     height: 1.3,
-    color: AppColors.textPrimary,
   );
 
   static TextStyle get h3 => GoogleFonts.inter(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-    letterSpacing: -0.2,
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textDark,
+    letterSpacing: -0.4,
     height: 1.4,
-    color: AppColors.textPrimary,
   );
 
-  // Body Styles
+  // Tagline style
+  static TextStyle get tagline => GoogleFonts.inter(
+    fontSize: 32,
+    fontWeight: FontWeight.w500,
+    color: AppColors.textDark,
+    height: 1.4,
+  );
+
+  // Section Heading
+  static TextStyle get sectionHeading => GoogleFonts.inter(
+    fontSize: 48,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textDark,
+    letterSpacing: -1,
+  );
+
+  // Body Text (Super Hello style)
+  static TextStyle get bodyText => GoogleFonts.inter(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textDark,
+    height: 1.6,
+  );
+
+  // Body Styles (legacy compatibility)
   static TextStyle get bodyLarge => GoogleFonts.inter(
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
     letterSpacing: 0,
     height: 1.6,
     color: AppColors.textPrimary,
   );
 
   static TextStyle get bodyMedium => GoogleFonts.inter(
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
     height: 1.5,
@@ -57,19 +89,26 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
-  // Button Text
+  // Button Text (Super Hello style)
   static TextStyle get buttonText => GoogleFonts.inter(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textDark,
     letterSpacing: 0,
-    color: Colors.white,
   );
 
   static TextStyle get buttonTextSecondary => GoogleFonts.inter(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
     letterSpacing: 0,
     color: AppColors.textPrimary,
+  );
+
+  // Card Title (Super Hello style)
+  static TextStyle get cardTitle => GoogleFonts.inter(
+    fontSize: 28,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textDark,
   );
 
   // Label Text

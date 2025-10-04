@@ -21,7 +21,11 @@ class SectionCard extends StatelessWidget {
           // Section Title
           Text(
             title,
-            style: AppTextStyles.h2.copyWith(color: AppColors.textPrimary),
+            style: AppTextStyles.sectionHeading.copyWith(
+              color: AppColors.textDark,
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+            ),
           ),
 
           const SizedBox(height: AppConstants.spacingLG),

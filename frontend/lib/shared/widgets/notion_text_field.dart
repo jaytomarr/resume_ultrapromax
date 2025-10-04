@@ -55,7 +55,14 @@ class NotionTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) ...[
-          Text(label!, style: AppTextStyles.labelText),
+          Text(
+            label!,
+            style: AppTextStyles.labelText.copyWith(
+              color: AppColors.textDark,
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+            ),
+          ),
           const SizedBox(height: 8),
         ],
         TextFormField(
@@ -73,7 +80,10 @@ class NotionTextField extends StatelessWidget {
           focusNode: focusNode,
           validator: validator,
           textCapitalization: textCapitalization,
-          style: AppTextStyles.bodyMedium,
+          style: AppTextStyles.bodyMedium.copyWith(
+            color: AppColors.textDark,
+            fontWeight: FontWeight.w500,
+          ),
           decoration: InputDecoration(
             hintText: hintText,
             helperText: helperText,
@@ -81,37 +91,44 @@ class NotionTextField extends StatelessWidget {
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             filled: true,
-            fillColor: AppColors.background,
+            fillColor: AppColors.cardWhite,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.border, width: 1),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: AppColors.textDark, width: 2),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.border, width: 1),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: AppColors.textDark, width: 2),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.primary, width: 1),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: AppColors.textDark, width: 2),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.error, width: 1),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: AppColors.textDark, width: 2),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: const BorderSide(color: AppColors.error, width: 1),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: AppColors.textDark, width: 2),
             ),
             contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 8,
+              horizontal: 16,
+              vertical: 12,
             ),
             hintStyle: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textTertiary,
+              fontWeight: FontWeight.w400,
             ),
-            helperStyle: AppTextStyles.helperText,
-            errorStyle: AppTextStyles.errorText,
-            counterStyle: AppTextStyles.caption,
+            helperStyle: AppTextStyles.helperText.copyWith(
+              color: AppColors.textDark,
+            ),
+            errorStyle: AppTextStyles.errorText.copyWith(
+              color: AppColors.textDark,
+            ),
+            counterStyle: AppTextStyles.caption.copyWith(
+              color: AppColors.textDark,
+            ),
           ),
         ),
       ],

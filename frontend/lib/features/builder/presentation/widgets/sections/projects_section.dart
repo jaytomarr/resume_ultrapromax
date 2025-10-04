@@ -144,7 +144,7 @@ class _ProjectEntryState extends ConsumerState<_ProjectEntry> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppConstants.spacingMD),
+      padding: const EdgeInsets.all(AppConstants.spacingSM),
       decoration: BoxDecoration(
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(6),
@@ -160,8 +160,8 @@ class _ProjectEntryState extends ConsumerState<_ProjectEntry> {
                 child: Text(
                   'Project ${widget.index + 1}',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textDark,
                   ),
                 ),
               ),
@@ -182,25 +182,31 @@ class _ProjectEntryState extends ConsumerState<_ProjectEntry> {
             ],
           ),
 
-          const SizedBox(height: AppConstants.spacingMD),
+          const SizedBox(height: AppConstants.spacingSM),
 
-          // Project Name
-          NotionTextField(
-            label: AppConstants.labelProjectName,
-            controller: _nameController,
-            hintText: AppConstants.placeholderProjectName,
-            onChanged: (_) => _updateProject(),
-          ),
-
-          const SizedBox(height: AppConstants.spacingMD),
-
-          // Project Link
-          NotionTextField(
-            label: AppConstants.labelProjectLink,
-            controller: _linkController,
-            hintText: AppConstants.placeholderProjectLink,
-            helperText: 'Optional - GitHub or live demo link',
-            onChanged: (_) => _updateProject(),
+          // Project Name and Link in Row
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: NotionTextField(
+                  label: AppConstants.labelProjectName,
+                  controller: _nameController,
+                  hintText: AppConstants.placeholderProjectName,
+                  onChanged: (_) => _updateProject(),
+                ),
+              ),
+              const SizedBox(width: AppConstants.spacingMD),
+              Expanded(
+                flex: 1,
+                child: NotionTextField(
+                  label: AppConstants.labelProjectLink,
+                  controller: _linkController,
+                  hintText: AppConstants.placeholderProjectLink,
+                  onChanged: (_) => _updateProject(),
+                ),
+              ),
+            ],
           ),
 
           const SizedBox(height: AppConstants.spacingMD),
@@ -210,11 +216,11 @@ class _ProjectEntryState extends ConsumerState<_ProjectEntry> {
             'Key Points:',
             style: AppTextStyles.bodyMedium.copyWith(
               fontWeight: FontWeight.w500,
-              color: AppColors.textPrimary,
+              color: AppColors.textDark,
             ),
           ),
 
-          const SizedBox(height: AppConstants.spacingSM),
+          const SizedBox(height: 8),
 
           ..._pointControllers.asMap().entries.map((entry) {
             final pointIndex = entry.key;
@@ -222,7 +228,7 @@ class _ProjectEntryState extends ConsumerState<_ProjectEntry> {
             final isFirst = pointIndex == 0;
 
             return Container(
-              margin: const EdgeInsets.only(bottom: AppConstants.spacingSM),
+              margin: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [
                   Expanded(

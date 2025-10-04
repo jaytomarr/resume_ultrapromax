@@ -164,8 +164,8 @@ class _LeadershipEntryState extends ConsumerState<_LeadershipEntry> {
                 child: Text(
                   'Leadership Role ${widget.index + 1}',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textDark,
                   ),
                 ),
               ),
