@@ -50,7 +50,7 @@ class InfoCards extends StatelessWidget {
                             icon: Icons.edit,
                             title: 'Fill Details',
                             description:
-                                'Enter your professional information using our intuitive form.',
+                                'Focus on Your Story, Not the Format. Just plug in the highlights and watch a stunning resume come to life.',
                             isMobile: isMobile,
                           ),
                           SizedBox(height: isMobile ? 12 : 16),
@@ -58,7 +58,7 @@ class InfoCards extends StatelessWidget {
                             icon: Icons.visibility,
                             title: 'Preview',
                             description:
-                                'See how your resume looks before downloading.',
+                                'Get a pixel-perfect preview. Tweak and perfect every detail until it\'s ready to impress.',
                             isMobile: isMobile,
                           ),
                           SizedBox(height: isMobile ? 12 : 16),
@@ -66,7 +66,7 @@ class InfoCards extends StatelessWidget {
                             icon: Icons.download,
                             title: 'Download',
                             description:
-                                'Get your professional PDF resume instantly.',
+                                'Ready for Action. Download your job-winning resume as a high-quality, ATS-friendly PDF. Now, go get that interview.',
                             isMobile: isMobile,
                           ),
                         ],
@@ -82,7 +82,7 @@ class InfoCards extends StatelessWidget {
                             icon: Icons.edit,
                             title: 'Fill Details',
                             description:
-                                'Enter your professional information using our intuitive form.',
+                                'Focus on Your Story, Not the Format. Just plug in the highlights and watch a stunning resume come to life.',
                             isMobile: isMobile,
                           ),
                           SizedBox(width: 24),
@@ -90,7 +90,7 @@ class InfoCards extends StatelessWidget {
                             icon: Icons.visibility,
                             title: 'Preview',
                             description:
-                                'See how your resume looks before downloading.',
+                                'Get a pixel-perfect preview. Tweak and perfect every detail until it\'s ready to impress.',
                             isMobile: isMobile,
                           ),
                           SizedBox(width: 24),
@@ -98,7 +98,7 @@ class InfoCards extends StatelessWidget {
                             icon: Icons.download,
                             title: 'Download',
                             description:
-                                'Get your professional PDF resume instantly.',
+                                'Ready for Action. Download your job-winning resume as a high-quality, ATS-friendly PDF. Now, go get that interview.',
                             isMobile: isMobile,
                           ),
                         ],
@@ -130,7 +130,7 @@ class _ProcessCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: isMobile ? double.infinity : 280,
+      width: isMobile ? double.infinity : 320,
       decoration: BoxDecoration(
         color: AppColors.cardWhite,
         borderRadius: BorderRadius.circular(isMobile ? 8 : 20),

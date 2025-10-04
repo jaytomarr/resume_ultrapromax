@@ -52,14 +52,14 @@ class TopNavbar extends StatelessWidget {
                   ),
                 ],
               ),
-              // View Example Button (not clickable)
+              // View Example Button
               ElevatedButton(
-                onPressed: null, // Not clickable as per PRD
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/example');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryYellow,
                   foregroundColor: AppColors.textDark,
-                  disabledBackgroundColor: AppColors.primaryYellow,
-                  disabledForegroundColor: AppColors.textDark,
                   elevation: 0,
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(

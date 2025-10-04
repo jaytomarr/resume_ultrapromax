@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_text_styles.dart';
-import '../../../../../core/constants/app_constants.dart';
 import '../../../auth/presentation/widgets/google_sign_in_dialog.dart';
 import '../../../../../shared/widgets/mobile_restriction_dialog.dart';
 
@@ -35,7 +34,7 @@ class HeroSection extends StatelessWidget {
                 children: [
                   // Centered Content
                   Text(
-                    AppConstants.appName,
+                    'The Last Resume Builder You\'ll Ever Need.',
                     style: AppTextStyles.heroTitle.copyWith(
                       fontSize: isMobile ? 38 : 48,
                       color: AppColors.textWhite,
@@ -45,7 +44,7 @@ class HeroSection extends StatelessWidget {
                   ),
                   SizedBox(height: isMobile ? 16 : 20),
                   Text(
-                    'Build your professional resume in minutes.',
+                    'Effortlessly create a clean, professional, and ATS-friendly resume that gets you noticed.',
                     style: AppTextStyles.tagline.copyWith(
                       fontSize: isMobile ? 20 : 20,
                       color: AppColors.textWhite,
@@ -55,7 +54,7 @@ class HeroSection extends StatelessWidget {
                   ),
                   SizedBox(height: isMobile ? 12 : 16),
                   Text(
-                    'Simple, clean, and ready-to-download resumes built instantly.',
+                    'Download your PDF in minutes.',
                     style: AppTextStyles.bodyText.copyWith(
                       fontSize: isMobile ? 16 : 16,
                       color: AppColors.textWhite,
@@ -99,7 +98,7 @@ class HeroSection extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    child: Text(AppConstants.buttonGetStarted),
+                    child: Text('Start Building'),
                   ),
                 ],
               ),
